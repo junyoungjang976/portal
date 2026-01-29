@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>부성티케이 업무 포털</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #0a0a0a;
+      min-height: 100vh;
+      color: #ffffff;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 60px;
+      padding: 60px 20px;
+    }
+
+    .brand-section {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 60px;
+      flex-wrap: wrap;
+      margin-bottom: 40px;
+    }
+
+    .brand-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-logo {
+      height: 80px;
+      object-fit: contain;
+    }
+
+    .brand-label {
+      font-size: 0.75rem;
+      color: #6b7280;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-weight: 500;
+    }
+
+    .brand-divider {
+      width: 2px;
+      height: 100px;
+      background: linear-gradient(to bottom, transparent, #f97316, transparent);
+    }
+
+    .subtitle {
+      color: #9ca3af;
+      font-size: 1.1rem;
+      font-weight: 400;
+    }
+
+    .apps-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 24px;
+      margin-bottom: 80px;
+    }
+
+    .app-card {
+      background: #111111;
+      border: 1px solid #262626;
+      border-radius: 16px;
+      padding: 28px;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .app-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #f97316, #fbbf24);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .app-card:hover {
+      transform: translateY(-4px);
+      border-color: #f97316;
+      box-shadow: 0 20px 40px rgba(249, 115, 22, 0.15);
+    }
+
+    .app-card:hover::before {
+      opacity: 1;
+    }
+
+    .app-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      margin-bottom: 20px;
+      background: #1a1a1a;
+      border: 1px solid #262626;
+    }
+
+    .app-icon.order { background: linear-gradient(135deg, #3b82f6, #6366f1); }
+    .app-icon.sales { background: linear-gradient(135deg, #f97316, #fbbf24); }
+    .app-icon.field { background: linear-gradient(135deg, #06b6d4, #22d3ee); }
+    .app-icon.call { background: linear-gradient(135deg, #10b981, #34d399); }
+    .app-icon.hvac { background: linear-gradient(135deg, #ec4899, #f472b6); }
+
+    .app-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 4px;
+      color: #ffffff;
+    }
+
+    .app-subtitle {
+      font-size: 0.9rem;
+      color: #6b7280;
+      margin-bottom: 14px;
+      font-weight: 500;
+    }
+
+    .app-description {
+      font-size: 0.9rem;
+      color: #9ca3af;
+      line-height: 1.7;
+      flex-grow: 1;
+    }
+
+    .app-features {
+      margin-top: 18px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .feature-tag {
+      background: #1a1a1a;
+      border: 1px solid #262626;
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-size: 0.75rem;
+      color: #9ca3af;
+      font-weight: 500;
+    }
+
+    .app-arrow {
+      margin-top: 20px;
+      color: #f97316;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-weight: 600;
+      transition: gap 0.3s ease;
+    }
+
+    .app-card:hover .app-arrow {
+      gap: 12px;
+    }
+
+    .status-badge {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      margin-left: 10px;
+      vertical-align: middle;
+    }
+
+    .status-live { background: rgba(16, 185, 129, 0.15); color: #10b981; border: 1px solid rgba(16, 185, 129, 0.3); }
+    .status-dev { background: rgba(251, 191, 36, 0.15); color: #fbbf24; border: 1px solid rgba(251, 191, 36, 0.3); }
+
+    footer {
+      text-align: center;
+      padding: 32px 0;
+      border-top: 1px solid #262626;
+      color: #6b7280;
+      font-size: 0.85rem;
+    }
+
+    .footer-brand {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 24px;
+      margin-bottom: 16px;
+    }
+
+    .footer-brand img {
+      height: 40px;
+      opacity: 0.6;
+      transition: opacity 0.3s ease;
+    }
+
+    .footer-brand img:hover {
+      opacity: 1;
+    }
+
+    .footer-links {
+      margin-top: 16px;
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+    }
+
+    .footer-links a {
+      color: #6b7280;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .footer-links a:hover {
+      color: #f97316;
+    }
+
+    @media (max-width: 640px) {
+      header { padding: 40px 20px; margin-bottom: 32px; }
+      .brand-section { gap: 30px; }
+      .brand-logo { height: 56px; }
+      .brand-divider { height: 70px; }
+      .container { padding: 0 16px 24px 16px; }
+      .apps-grid { gap: 16px; grid-template-columns: 1fr; }
+      .app-card { padding: 24px; }
+      .subtitle { font-size: 0.95rem; }
+      .footer-brand img { height: 32px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="brand-section">
+        <div class="brand-item">
+          <img src="images/busung-logo.png" alt="BUSUNG TK" class="brand-logo">
+          <span class="brand-label">B2B</span>
+        </div>
+        <div class="brand-divider"></div>
+        <div class="brand-item">
+          <img src="images/infrakitchen-logo-kr.png" alt="인프라키친" class="brand-logo">
+          <span class="brand-label">B2C</span>
+        </div>
+      </div>
+      <p class="subtitle">통합 업무 관리 시스템</p>
+    </header>
+
+    <main class="apps-grid">
+      <a href="https://order-tracker-iota.vercel.app/" target="_blank" class="app-card">
+        <div class="app-icon order">📦</div>
+        <h2 class="app-title">
+          Order Tracker
+          <span class="status-badge status-live">Live</span>
+        </h2>
+        <p class="app-subtitle">발주 추적 시스템</p>
+        <p class="app-description">
+          발주부터 입고까지 전체 과정을 추적하고 자동 알림을 받으세요.
+          D-3, D-1, D-day 알림으로 일정을 놓치지 않습니다.
+        </p>
+        <div class="app-features">
+          <span class="feature-tag">발주 관리</span>
+          <span class="feature-tag">캘린더 뷰</span>
+          <span class="feature-tag">자동 알림</span>
+          <span class="feature-tag">엑셀 임포트</span>
+        </div>
+        <div class="app-arrow">앱 열기 →</div>
+      </a>
+
+      <a href="https://sales-pipeline-nine.vercel.app/" target="_blank" class="app-card">
+        <div class="app-icon sales">📊</div>
+        <h2 class="app-title">
+          Sales Pipeline
+          <span class="status-badge status-live">Live</span>
+        </h2>
+        <p class="app-subtitle">영업 대시보드</p>
+        <p class="app-description">
+          영업 기회를 관리하고 매출을 분석하세요.
+          KPI, 월별 추이, 영업 퍼널을 한눈에 확인할 수 있습니다.
+        </p>
+        <div class="app-features">
+          <span class="feature-tag">KPI 분석</span>
+          <span class="feature-tag">칸반 보드</span>
+          <span class="feature-tag">채널톡 연동</span>
+          <span class="feature-tag">매출 리포트</span>
+        </div>
+        <div class="app-arrow">앱 열기 →</div>
+      </a>
+
+      <a href="https://field-check.vercel.app/" target="_blank" class="app-card">
+        <div class="app-icon field">📍</div>
+        <h2 class="app-title">
+          Field Check
+          <span class="status-badge status-live">Live</span>
+        </h2>
+        <p class="app-subtitle">현장 진단</p>
+        <p class="app-description">
+          모바일에서 현장 진단 정보를 입력하고 사진을 촬영하세요.
+          리스크 점수 자동 계산과 GPS 위치 저장을 지원합니다.
+        </p>
+        <div class="app-features">
+          <span class="feature-tag">모바일 입력</span>
+          <span class="feature-tag">사진 촬영</span>
+          <span class="feature-tag">리스크 분석</span>
+          <span class="feature-tag">GPS 위치</span>
+        </div>
+        <div class="app-arrow">앱 열기 →</div>
+      </a>
+
+      <a href="https://hvac-mentor.vercel.app/" target="_blank" class="app-card">
+        <div class="app-icon hvac">🔧</div>
+        <h2 class="app-title">
+          HVAC Mentor
+          <span class="status-badge status-live">Live</span>
+        </h2>
+        <p class="app-subtitle">AI 냉동공조 현장 멘토</p>
+        <p class="app-description">
+          P-T 차트 기반 자동 진단과 AI 멘토 가이드를 받으세요.
+          고장 패턴 사전, 비상 대응 매뉴얼, 충전 가이드를 제공합니다.
+        </p>
+        <div class="app-features">
+          <span class="feature-tag">AI 진단</span>
+          <span class="feature-tag">P-T 차트</span>
+          <span class="feature-tag">고장 패턴</span>
+          <span class="feature-tag">비상 대응</span>
+        </div>
+        <div class="app-arrow">앱 열기 →</div>
+      </a>
+
+      <a href="https://busungtk-call-manager.vercel.app/" target="_blank" class="app-card">
+        <div class="app-icon call">📞</div>
+        <h2 class="app-title">
+          Call Manager
+          <span class="status-badge status-live">Live</span>
+        </h2>
+        <p class="app-subtitle">통화 기록 관리</p>
+        <p class="app-description">
+          영업 및 CS 통화 내용을 기록하고 검색하세요.
+          후속 조치 관리로 누락 없이 업무를 처리합니다.
+        </p>
+        <div class="app-features">
+          <span class="feature-tag">통화 기록</span>
+          <span class="feature-tag">후속 조치</span>
+          <span class="feature-tag">연락처 관리</span>
+          <span class="feature-tag">통계 분석</span>
+        </div>
+        <div class="app-arrow">앱 열기 →</div>
+      </a>
+
+      <a href="https://busung-as.vercel.app/" target="_blank" class="app-card">
+        <div class="app-icon" style="background: linear-gradient(135deg, #8b5cf6, #a78bfa);">🛠️</div>
+        <h2 class="app-title">
+          A/S Manager
+          <span class="status-badge status-live">Live</span>
+        </h2>
+        <p class="app-subtitle">A/S 접수 관리</p>
+        <p class="app-description">
+          A/S 접수부터 완료까지 전체 과정을 관리하세요.
+          기사 배정, 진행 상태 추적, KPI 분석을 지원합니다.
+        </p>
+        <div class="app-features">
+          <span class="feature-tag">A/S 접수</span>
+          <span class="feature-tag">기사 배정</span>
+          <span class="feature-tag">상태 추적</span>
+          <span class="feature-tag">KPI 분석</span>
+        </div>
+        <div class="app-arrow">앱 열기 →</div>
+      </a>
+    </main>
+
+    <footer>
+      <div class="footer-brand">
+        <img src="images/busung-logo.png" alt="BUSUNG TK">
+        <img src="images/infrakitchen-logo-kr.png" alt="인프라키친">
+      </div>
+      <p>© 2025 부성티케이. All rights reserved.</p>
+      <div class="footer-links">
+        <a href="https://github.com/junyoungjang976/busungtk" target="_blank">GitHub</a>
+        <a href="#">도움말</a>
+        <a href="#">문의하기</a>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>
