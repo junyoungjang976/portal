@@ -22,13 +22,12 @@ portal/
 - 반응형 디자인
 
 ## 연결된 시스템
-- order-tracker (발주 추적)
-- field-check (현장 진단)
+- asms (A/S 관리 시스템)
 - sales-pipeline (영업 파이프라인)
-- equipment-manager (장비 관리)
-- busung-as (AS 접수)
+- field-check (현장 진단)
+- order-tracker (발주 추적)
 - hvac-mentor (HVAC 진단)
-- call-manager (콜 매니저)
+- equipment-manager (장비 관리)
 
 ## 로컬 개발
 ```bash
