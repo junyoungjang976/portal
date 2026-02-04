@@ -1,7 +1,23 @@
-# Portal (부성티케이 업무 포털)
+# Portal - Claude 작업 지침
 
-## 개요
-부성티케이의 각 업무 시스템으로 연결하는 메인 포털 페이지입니다.
+## 프로젝트 개요
+부성티케이 업무 포털 (정적 HTML/CSS)
+
+## 작업 방식
+
+### 필수 절차
+1. 어떤 파일을 수정할지 먼저 목록으로 보여주고 승인 받기
+2. 변경 범위를 최소화 - 요청한 기능만 수정
+3. 수정 후 "이것만 바꿨고, 다른 건 안 건드렸다" 확인 메시지 출력
+
+### 금지 사항
+- 승인 없이 파일 수정 금지
+- "이왕 하는 김에" 식의 추가 수정 금지
+- 코드 정리/리팩토링 임의 수행 금지
+
+### 배포/커밋 규칙
+- 배포, push, commit은 내가 "작업 끝났다" 또는 "수정 완료"라고 말할 때 물어보고 진행
+- 그 전까지는 브라우저에서 직접 확인
 
 ## 기술 스택
 - **구조**: 정적 HTML/CSS
@@ -13,21 +29,18 @@
 portal/
 ├── index.html    # 메인 포털 페이지
 ├── images/       # 로고 및 이미지 파일
+│   ├── busung-logo.png
+│   └── infrakitchen-logo-kr.png
 └── .gitignore
 ```
 
-## 주요 기능
-- 부성티케이 브랜드 로고 표시
-- 각 업무 시스템으로의 링크 제공
-- 반응형 디자인
-
 ## 연결된 시스템
-- asms (A/S 관리 시스템)
-- sales-pipeline (영업 파이프라인)
-- field-check (현장 진단)
-- order-tracker (발주 추적)
-- hvac-mentor (HVAC 진단)
-- equipment-manager (장비 관리)
+- **ASMS**: A/S 관리 시스템 (asms-two.vercel.app)
+- **Sales Pipeline**: 영업 대시보드 (sales-pipeline-sandy.vercel.app)
+- **Field Check**: 현장 진단 (field-check.vercel.app)
+- **Order Tracker**: 발주 추적 (order-tracker-iota.vercel.app)
+- **HVAC Mentor**: AI 냉동공조 멘토 (hvac-mentor.vercel.app)
+- **Equipment Manager**: 장비 관리 (equipment-manager-app.vercel.app)
 
 ## 로컬 개발
 ```bash
