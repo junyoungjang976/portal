@@ -1,2 +1,14 @@
+# Environment
+.env
+.env.local
+.env.*.local
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Vercel
 .vercel
-.env*.local
+
+# Claude / OMC
+.omc/
